@@ -12,6 +12,9 @@ public class UserInteractionService {
         System.out.printf("\n**************************************************\n%s" +
                 "\n**************************************************\n", message);
     }
+    void showErrorLine() {
+        System.out.printf("The line contains an error");
+    }
 
     String getUserFilePath() {
         showMessage("Enter a file name for the analytics or press enter for test file analytics");

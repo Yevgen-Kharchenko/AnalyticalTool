@@ -15,7 +15,7 @@ public class App {
         mainService.doAnalytics();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         App app =new App();
         app.run();
     }
