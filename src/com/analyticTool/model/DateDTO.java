@@ -12,11 +12,6 @@ public class DateDTO {
         this.dateTo = LocalDate.now();
     }
 
-    public DateDTO(LocalDate dateFrom, LocalDate dateTo) {
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-    }
-
     public LocalDate getDateFrom() {
         return dateFrom;
     }

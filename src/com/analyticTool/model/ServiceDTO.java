@@ -9,11 +9,6 @@ public class ServiceDTO {
         this.variationId = 0;
     }
 
-    public ServiceDTO(int serviceId, int variationId) {
-        this.serviceId = serviceId;
-        this.variationId = variationId;
-    }
-
     public int getServiceId() {
         return serviceId;
     }

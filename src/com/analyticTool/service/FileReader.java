@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class FileReader {
 
-    String[] readMyFile(String path) {
+    public String[] readMyFile(String path) {
         File file = new File(path);
 
         Scanner scanner;
@@ -70,7 +70,7 @@ public class FileReader {
         if (splitDate.length == 0 || splitDate.length > 2) {
             System.out.println("Error in date");
             return dateDTO;
-//       validate date format
+
         } else if (splitDate.length == 2) {
             dateDTO.setDateFrom(LocalDate.parse(splitDate[0], formatter));
             dateDTO.setDateTo(LocalDate.parse(splitDate[1], formatter));

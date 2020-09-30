@@ -1,17 +1,20 @@
-package com.analyticTool.service;
+package com.analyticTool.controller;
 
 import com.analyticTool.exception.ResponseTypeException;
 import com.analyticTool.model.*;
+import com.analyticTool.service.DataAnalytics;
+import com.analyticTool.service.FileReader;
+import com.analyticTool.service.UserInteractionService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainService {
+public class MainController {
     private UserInteractionService userInteractionService = new UserInteractionService();
+    private DataAnalytics dataAnalytics = new DataAnalytics();
     private FileReader fileReader = new FileReader();
     private List<Question> questionList = new ArrayList<>();
-    private List<Query> queryList = new ArrayList<>();
     private String[] lineArray;
 
 
@@ -23,17 +26,26 @@ public class MainService {
             if (splitLine[0].equals("C")) {
                 Question question = createQuestion(splitLine);
                 questionList.add(question);
-
-                userInteractionService.showMessage(question.toString());
             } else if (splitLine[0].equals("D")) {
                 Query query = createQuery(splitLine);
-                queryList.add(query);
-                userInteractionService.showMessage(query.toString());
+                List<Question> filteredList = dataAnalytics.filterData(questionList, query);
+                String result;
+                if (filteredList.isEmpty()) result = "-";
+                else result = String.valueOf(averageWaitingTime(filteredList));
+                userInteractionService.printResult(result);
             } else userInteractionService.showErrorLine();
         }
+    }
 
-        System.out.println(questionList.toString());
-        System.out.println(queryList.toString());
+
+    private int averageWaitingTime(List<Question> filteredList) {
+        int sum = 0;
+        int count = 0;
+        for (Question element : filteredList) {
+            sum += element.getTime();
+            count++;
+        }
+        return sum / count;
     }
 
     private Query createQuery(String[] splitLine) {
@@ -92,12 +104,10 @@ public class MainService {
                 date, time);
     }
 
-
     public void readFile() {
         String fileName = userInteractionService.getUserFilePath();
         lineArray = fileReader.readMyFile(fileName);
         if (lineArray.length == 0) readFile();
-
     }
 
 }

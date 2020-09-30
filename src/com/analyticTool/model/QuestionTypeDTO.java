@@ -12,12 +12,6 @@ public class QuestionTypeDTO {
         this.subCategoryId = 0;
     }
 
-    public QuestionTypeDTO(int questionTypeId, int categoryId, int subCategoryId) {
-        this.questionTypeId = questionTypeId;
-        this.categoryId = categoryId;
-        this.subCategoryId = subCategoryId;
-    }
-
     public int getQuestionTypeId() {
         return questionTypeId;
     }
