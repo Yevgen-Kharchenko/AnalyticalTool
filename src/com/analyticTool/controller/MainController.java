@@ -39,13 +39,15 @@ public class MainController {
 
 
     private int averageWaitingTime(List<Question> filteredList) {
-        int sum = 0;
+        double sum = 0;
         int count = 0;
+        double average;
         for (Question element : filteredList) {
             sum += element.getTime();
             count++;
         }
-        return sum / count;
+        average=sum / count;
+        return (int) Math.round(average);
     }
 
     private Query createQuery(String[] splitLine) {

@@ -48,7 +48,7 @@ public class FileReader {
         return new String[0];
     }
 
-    public String getResponseType(String splitLine) throws ResponseTypeException {
+    public String getResponseType(String splitLine) {
         String responseType = "Error";
         if (splitLine.equals("N") || splitLine.equals("P") || splitLine.equals("*")) {
             responseType = splitLine;
